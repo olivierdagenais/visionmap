@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.Threading;
-using System.IO;
 using System.ComponentModel;
-using System.Xml;
+using System.Diagnostics;
+using System.IO;
 using System.Reflection;
+using System.Threading;
+using System.Xml;
 using FogBugzNet;
-using System.Security.Cryptography;
 
 namespace FogBugzCaseTracker
 {
@@ -93,7 +90,8 @@ namespace FogBugzCaseTracker
                 Utils.Log.DebugFormat("Downloading latest version from {0} to {1}", remoteURL, localFilePath);
                 HttpUtils.httpGetBinary(remoteURL, localFilePath);
                 Crypto.VerifyDownloadedFileHash(localFilePath, _latest.SelectSingleNode("SHA1").InnerText, new System.Security.Cryptography.SHA1Managed());
-            } else
+            } 
+            else
                 Utils.Log.DebugFormat("Latest version already downloaded to: {0}", localFilePath);
                 
             return localFilePath;
